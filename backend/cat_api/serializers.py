@@ -2,6 +2,7 @@ from rest_framework import serializers
 from cat.models import Post
 
 class PostSerializer(serializers.ModelSerializer):
+
     class Meta:
         model = Post
         fields = ('id', 'company_name', 'role', 'status',

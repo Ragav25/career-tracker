@@ -42,6 +42,6 @@ class Post(models.Model):
         ordering = ('-post_created',)
 
     def __str__(self):
-        return self.company
+        return self.company_name
     
     
