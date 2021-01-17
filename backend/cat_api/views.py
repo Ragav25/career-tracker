@@ -2,9 +2,7 @@
 from rest_framework import generics
 from cat.models import Post
 from .serializers import PostSerializer
-from rest_framework.permissions import ( SAFE_METHODS, IsAuthenticatedOrReadOnly, 
-                                        BasePermission, IsAdminUser, DjangoModelPermissions,
-                                        DjangoModelPermissionsOrAnonReadOnly, IsAuthenticated )
+from rest_framework.permissions import SAFE_METHODS, IsAuthenticated, IsAuthenticatedOrReadOnly, BasePermission, IsAdminUser, DjangoModelPermissions
 
 
 class PostUserWritePermission(BasePermission):
@@ -13,9 +11,12 @@ class PostUserWritePermission(BasePermission):
     def has_object_permission(self, request, view, obj):
 
         if request.method in SAFE_METHODS:
-            return False
+            return True
+
+        print('**USER******* ', request.user)
 
         return obj.author == request.user
+
 
 class PostList(generics.ListCreateAPIView):
     permission_classes = [IsAuthenticated]
@@ -23,10 +24,9 @@ class PostList(generics.ListCreateAPIView):
     serializer_class = PostSerializer
 
     def get_queryset(self):
-
         user = self.request.user
+        print("user from list ++++==+** ", user)
         return Post.objects.filter(author=user)
-
 
 
 class PostDetail(generics.RetrieveUpdateDestroyAPIView, PostUserWritePermission):

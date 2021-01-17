@@ -10,16 +10,20 @@ body {
 }
 
 /* HEADER */
+
 .header nav.top{
   display: flex;
   align-items: center;
-  justify-content: center;
-
-  width: 100%;
+  justify-content: space-between;
+  padding: 0 100px;
   height: 70px;
 
   background: #ffffff;
   color: #307592;
 
   font-weight: 600;
+}
+
+.header nav.top a{
+  margin: 0 13px;
 }

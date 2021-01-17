@@ -6,6 +6,9 @@ import reportWebVitals from './reportWebVitals';
 
 import { Route, BrowserRouter as Router, Switch } from 'react-router-dom'
 import { Header } from './components/Header';
+import { SignUp } from './components/register';
+import { Login } from './components/login';
+import SignOut from './components/logout';
 
 
 const routing = (
@@ -14,6 +17,9 @@ const routing = (
     <Header />
       <Switch>
         <Route exact path="/" component={App} />
+        <Route exact path="/register" component={SignUp} />
+        <Route exact path="/login" component={Login} />
+        <Route exact path="/logout" component={SignOut} />
       </Switch>
     </React.StrictMode>
   </Router>
